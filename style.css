@@ -1,3 +1,139 @@
-body{
-	font-family: monospace;
+/* stijlblad · github landing page */
+
+:root {
+  --bg: #ffffff;
+  --paper: #ffffff;
+  --ink: #000000;
+  --ink-soft: #333333;
+  --accent: #ff3b00;
+  --accent-2: #0047ff;
+  --warn: #ffd400;
+  --lijn: 4px solid var(--ink);
+  --mono: "Courier New", Courier, monospace;
+  --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 2.5rem 1.25rem 4rem;
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(0, 0, 0, .055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, .055) 1px, transparent 1px);
+  background-size: 34px 34px;
+  color: var(--ink);
+  font-family: var(--mono);
+  line-height: 1.55;
+}
+
+::selection { background: var(--ink); color: var(--warn); }
+
+:focus-visible { outline: 4px solid var(--accent-2); outline-offset: 3px; }
+
+/* grote kop */
+h1 {
+  font-family: var(--sans);
+  font-weight: 900;
+  font-size: clamp(2.2rem, 8vw, 4.4rem);
+  line-height: .92;
+  text-transform: uppercase;
+  letter-spacing: -.04em;
+  margin: 0 0 1.6rem;
+  width: fit-content;
+  max-width: 100%;
+  background: var(--ink);
+  color: #fff;
+  padding: .35rem .5rem .4rem;
+  border: var(--lijn);
+  box-shadow: 10px 10px 0 var(--accent);
+  transform: rotate(-1deg);
+}
+
+/* sectiekop */
+h2 {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: .95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  background: var(--warn);
+  border: var(--lijn);
+  box-shadow: 5px 5px 0 var(--ink);
+  padding: .4rem .8rem;
+  margin: 0 0 1.8rem;
+}
+
+/* subkop */
+h3 {
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 900;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: -.01em;
+  border-left: 12px solid var(--accent);
+  border-bottom: var(--lijn);
+  padding: .2rem .6rem .25rem;
+  margin: 2.2rem 0 .9rem;
+}
+
+/* lopende tekst */
+p {
+  max-width: 46rem;
+  margin: 0 0 1.6rem;
+  border-left: 6px solid var(--ink);
+  padding-left: 1rem;
+  color: var(--ink-soft);
+}
+
+/* lijst + links als losse blokken */
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+ul li::before { content: none; }
+
+ul a {
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 900;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: -.01em;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--paper);
+  border: var(--lijn);
+  box-shadow: 7px 7px 0 var(--ink);
+  padding: .9rem 1.2rem;
+}
+
+ul a::after { content: " →"; }
+
+ul a:hover,
+ul a:focus-visible {
+  transform: translate(-3px, -3px);
+  box-shadow: 10px 10px 0 var(--accent);
+}
+
+ul a:active {
+  transform: translate(5px, 5px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+@media (max-width: 620px) {
+  body { padding: 1.5rem 1rem 3rem; }
+  h1 { box-shadow: 6px 6px 0 var(--accent); }
+  ul a { width: 100%; text-align: center; }
 }
