@@ -56,7 +56,9 @@ h1 {
 
 /* sectiekop */
 h2 {
-  display: inline-block;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
   font-family: var(--mono);
   font-size: .95rem;
   font-weight: 700;
@@ -71,7 +73,9 @@ h2 {
 
 /* subkop */
 h3 {
-  display: inline-block;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
   font-family: var(--sans);
   font-weight: 900;
   font-size: 1.25rem;
