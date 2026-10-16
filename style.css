@@ -1,4 +1,4 @@
-/* stijlblad · github landing page */
+/* stijlblad · CM Coding Landingpage */
 
 :root {
   --bg: #ffffff;
@@ -7,6 +7,7 @@
   --ink-soft: #333333;
   --accent: #ff3b00;
   --accent-2: #0047ff;
+  --accent-3: #00c853;
   --warn: #ffd400;
   --lijn: 4px solid var(--ink);
   --mono: "Courier New", Courier, monospace;
@@ -20,7 +21,7 @@ html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   min-height: 100vh;
-  padding: 2.5rem 1.25rem 4rem;
+  padding: 2.5rem 1.5rem 4rem;
   background-color: var(--bg);
   background-image:
     linear-gradient(rgba(0, 0, 0, .055) 1px, transparent 1px),
@@ -30,6 +31,8 @@ body {
   font-family: var(--mono);
   line-height: 1.55;
 }
+
+.om { max-width: 1180px; margin: 0 auto; }
 
 ::selection { background: var(--ink); color: var(--warn); }
 
@@ -43,7 +46,7 @@ h1 {
   line-height: .92;
   text-transform: uppercase;
   letter-spacing: -.04em;
-  margin: 0 0 1.6rem;
+  margin: 0 0 1.8rem;
   width: fit-content;
   max-width: 100%;
   background: var(--ink);
@@ -68,76 +71,103 @@ h2 {
   border: var(--lijn);
   box-shadow: 5px 5px 0 var(--ink);
   padding: .4rem .8rem;
-  margin: 0 0 1.8rem;
+  margin: 0 0 2.2rem;
 }
 
-/* subkop */
-h3 {
-  display: block;
-  width: fit-content;
-  max-width: 100%;
-  font-family: var(--sans);
-  font-weight: 900;
-  font-size: 1.25rem;
-  text-transform: uppercase;
-  letter-spacing: -.01em;
-  border-left: 12px solid var(--accent);
-  border-bottom: var(--lijn);
-  padding: .2rem .6rem .25rem;
-  margin: 2.2rem 0 .9rem;
+/* kaartenraster: 3 op een rij */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.6rem;
 }
 
-/* lopende tekst */
-p {
-  max-width: 46rem;
-  margin: 0 0 1.6rem;
-  border-left: 6px solid var(--ink);
-  padding-left: 1rem;
+/* kaart */
+.kaart {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  background: var(--paper);
+  border: var(--lijn);
+  border-top: 12px solid var(--kap, var(--accent));
+  box-shadow: 7px 7px 0 var(--ink);
+  padding: 1.15rem 1.1rem 1.25rem;
+  margin-top: 6px;
+}
+
+.kaart:hover,
+.kaart:focus-within {
+  transform: translate(-3px, -3px);
+  box-shadow: 10px 10px 0 var(--kap, var(--accent));
+}
+
+.kaart .nr {
+  position: absolute;
+  top: .55rem;
+  right: .7rem;
+  font-family: var(--mono);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .12em;
   color: var(--ink-soft);
 }
 
-/* lijst + links als losse blokken */
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
-}
-
-ul li::before { content: none; }
-
-ul a {
-  display: inline-block;
+.kaart h3 {
   font-family: var(--sans);
   font-weight: 900;
-  font-size: 1.15rem;
+  font-size: 1.18rem;
+  line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: -.01em;
+  margin: 0;
+  padding-right: 2.4rem;
+}
+
+.kaart h3 a {
+  color: inherit;
   text-decoration: none;
-  color: var(--ink);
-  background: var(--paper);
-  border: var(--lijn);
-  box-shadow: 7px 7px 0 var(--ink);
-  padding: .9rem 1.2rem;
 }
 
-ul a::after { content: " →"; }
-
-ul a:hover,
-ul a:focus-visible {
-  transform: translate(-3px, -3px);
-  box-shadow: 10px 10px 0 var(--accent);
+/* hele kaart klikbaar */
+.kaart h3 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
 }
 
-ul a:active {
-  transform: translate(5px, 5px);
-  box-shadow: 1px 1px 0 var(--ink);
+.kaart h3 a:focus-visible { outline: none; }
+
+.kaart:has(h3 a:focus-visible) {
+  outline: 4px solid var(--accent-2);
+  outline-offset: 3px;
 }
 
-@media (max-width: 620px) {
+.kaart p {
+  margin: 0;
+  font-size: .92rem;
+  color: var(--ink-soft);
+}
+
+/* pijl onderaan de kaart */
+.pijl {
+  margin-top: auto;
+  padding-top: .9rem;
+  align-self: flex-end;
+  font-family: var(--sans);
+  font-weight: 900;
+  font-size: 1.45rem;
+  line-height: 1;
+  transition: transform .15s;
+}
+
+.kaart:hover .pijl { transform: translateX(6px); }
+
+@media (max-width: 980px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
   body { padding: 1.5rem 1rem 3rem; }
+  .grid { grid-template-columns: 1fr; gap: 1.3rem; }
   h1 { box-shadow: 6px 6px 0 var(--accent); }
-  ul a { width: 100%; text-align: center; }
 }
